@@ -24,8 +24,8 @@ public class HomeScreen implements ActionListener {
 	}; */
 	
 	
-	private static JButton[] but = new JButton[12];
-	private static String[] columnNames = {"Date", "Vehicles", "Non-Vehicles", "Passes", "Column 5", "Column 6", "awefawefa", "fawejifaowj", "awejfiawe"};
+	private static JButton[] but = new JButton[8];
+	private static String[] columnNames = {"Date", "Vehicles", "Non-Vehicles", "Passes", "Column 5", "Column 6", "awefawefa"};
 	private static JComboBox<String> yearList;
 	private static JComboBox<String> monthList;
 	private static JComboBox<String> nameList;
@@ -35,7 +35,7 @@ public class HomeScreen implements ActionListener {
 		for(int i = 0; i < but.length - 1; i++) {
 			if (source == but[i]) {
 				contentPaneLayout.show(contentPane, (String) e.getActionCommand());
-			} else if (source == but[10]) {
+			} else if (source == but[6]) {
 				createReport();
 			}
 		}
@@ -59,7 +59,7 @@ public class HomeScreen implements ActionListener {
 		addReportScreen(reportScreen, AL);
 		int width = 1000;
 		int height = 600;
-		contentPane.add("Main", main);
+		contentPane.add("Main Menu", main);
 		contentPane.add("Report", reportScreen);
 		frm.pack();
 		frm.setSize(width, height);
@@ -99,7 +99,7 @@ public class HomeScreen implements ActionListener {
 		notesArea.add(notesLabel);
 		notesArea.add(notesScroll);
 		dataNotes.add(notesArea);
-		dataNotes.add(but[11]);
+		dataNotes.add(but[7]);
 		bigTitle(main, "Overview");
 		dataArea.add(Box.createHorizontalGlue());
 		dataArea.add(left);
@@ -124,10 +124,6 @@ public class HomeScreen implements ActionListener {
 		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
 		left.add(Box.createVerticalGlue());
 		left.add(Box.createRigidArea(new Dimension(0, 100)));
-		for (int i = 5; i < 10; i++) {
-			left.add(but[i]);
-			left.add(Box.createRigidArea(new Dimension(0, 50)));
-		}
 		left.add(Box.createVerticalGlue());
 		JPanel reportOptions = new JPanel();
 		JLabel parkName = new JLabel("Park: ");
@@ -148,10 +144,11 @@ public class HomeScreen implements ActionListener {
 		reportOptions.add(dateYear);
 		reportOptions.add(yearList);
 		reportOptions.add(Box.createRigidArea(new Dimension(20, 0)));
-		reportOptions.add(but[10]);
+		reportOptions.add(but[6]);
 		reportArea.add(reportOptions);
 		reportArea.add(Box.createRigidArea(new Dimension(0, 50)));
 		reportArea.add(scrollPane);
+      reportArea.add(but[5]);
 		bigTitle(main, "Reports");
 		dataArea.add(Box.createHorizontalGlue());
 		dataArea.add(left);
@@ -166,13 +163,9 @@ public class HomeScreen implements ActionListener {
 		but[2] = new JButton("Graphs");
 		but[3] = new JButton("Report");
 		but[4] = new JButton("Notes");
-		but[5] = new JButton("Add Data");
-		but[6] = new JButton("Edit Data");
-		but[7] = new JButton("Graphs");
-		but[8] = new JButton("Notes");
-		but[9] = new JButton("Main");
-		but[10] = new JButton("Create");
-		but[11] = new JButton("Add Notes");
+		but[5] = new JButton("Main Menu");
+		but[6] = new JButton("Create");
+		but[7] = new JButton("Add Notes");
 		for (int i = 0; i < but.length; i++) {
 			but[i].addActionListener(AL);
 		}
