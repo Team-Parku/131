@@ -1,21 +1,10 @@
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
 
 
-public class addData2 extends JFrame  {
+class addData2 extends JPanel {
 	
 	//buttons
 	private JButton btnSubmit = new JButton();
@@ -26,6 +15,7 @@ public class addData2 extends JFrame  {
 	private JTextField vehicle;
 	private JTextField nonVehicle;
 	private JTextField totalPasses;
+   private JTextField totalAttendance;
 		
 	//variables from textfields
 	private int totalVehicle = 0;
@@ -33,122 +23,145 @@ public class addData2 extends JFrame  {
 	private int numVehicle = 0;
 	private int numNonVehicle = 0;
 
-	private JPanel contentPane;
-	
+   private ActionListener AL1;
+		
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					addData2 frame = new addData2();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+   public addData2(){
+      init();
+   }
 
-
-
-	/**
-	 * Create the frame.
-	 */
-	public addData2() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-				
-		JLabel selParkLbl = new JLabel("Select Park");
-		selParkLbl.setBounds(78, 11, 117, 30);
-		contentPane.add(selParkLbl);
+	private void init() {
+	 
+  
+		setPreferredSize(new Dimension(1000, 600));
+		setLayout(new BorderLayout(0, 0));
+		
+		JPanel top = new JPanel();
+		add(top, BorderLayout.NORTH);
+		top.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel lblNewLabel = new JLabel("Select Park");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		top.add(lblNewLabel);
 		
 		JComboBox selectParks = new JComboBox();
-		selectParks.setPreferredSize(new Dimension(50, 20));
-		selectParks.setModel(new DefaultComboBoxModel(new String[] {" ", "Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocohillo Wells", "Prairie City"}));
-		selectParks.setBounds(200, 16, 100, 20);
-		contentPane.add(selectParks);
+		selectParks.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		selectParks.setPreferredSize(new Dimension(110, 35));
+		selectParks.setMinimumSize(new Dimension(11000, 20));
+		selectParks.setBackground(SystemColor.inactiveCaptionBorder);
+		selectParks.setModel(new DefaultComboBoxModel(new String[] {"Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocohillo Wells", "Prairie City"}));
+		top.add(selectParks);
+		
+		JPanel middle = new JPanel();
+		add(middle, BorderLayout.CENTER);
+		middle.setLayout(null);
 		
 		JLabel lblAttendance = new JLabel("Attendance");
-		lblAttendance.setPreferredSize(new Dimension(100, 14));
-		lblAttendance.setMaximumSize(new Dimension(100, 14));
-		lblAttendance.setBounds(78, 74, 75, 14);
-		contentPane.add(lblAttendance);
+		lblAttendance.setFont(new Font("Times New Roman", Font.BOLD, 43));
+		lblAttendance.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAttendance.setBounds(219, 28, 236, 51);
+		middle.add(lblAttendance);
 		
 		JLabel lblPasses = new JLabel("Passes");
-		lblPasses.setBounds(313, 74, 46, 14);
-		contentPane.add(lblPasses);
+		lblPasses.setMaximumSize(new Dimension(56, 14));
+		lblPasses.setMinimumSize(new Dimension(56, 14));
+		lblPasses.setFont(new Font("Times New Roman", Font.BOLD, 43));
+		lblPasses.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPasses.setBounds(550, 28, 244, 51);
+		middle.add(lblPasses);
 		
-		JLabel lblVe = new JLabel("Vehicle");
-		lblVe.setBounds(33, 110, 46, 14);
-		contentPane.add(lblVe);
+		JLabel lblNewLabel_1 = new JLabel("Vehicle");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(246, 105, 147, 50);
+		middle.add(lblNewLabel_1);
 		
-		JLabel lblNonVehicle = new JLabel("Non Vehicle");
-		lblNonVehicle.setMaximumSize(new Dimension(99999, 14));
-		lblNonVehicle.setPreferredSize(new Dimension(75, 14));
-		lblNonVehicle.setBounds(33, 149, 75, 14);
-		contentPane.add(lblNonVehicle);
+		JLabel lblNewLabel_2 = new JLabel("Non Vehicle");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(246, 233, 153, 45);
+		middle.add(lblNewLabel_2);
 		
 		vehicle = new JTextField();
-		vehicle.setBounds(109, 107, 86, 20);
-		contentPane.add(vehicle);
+		vehicle.setBounds(246, 166, 147, 40);
+		middle.add(vehicle);
 		vehicle.setColumns(10);
 		
 		nonVehicle = new JTextField();
-		nonVehicle.setBounds(109, 146, 86, 20);
-		contentPane.add(nonVehicle);
+		nonVehicle.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		nonVehicle.setBounds(246, 294, 147, 40);
+		middle.add(nonVehicle);
 		nonVehicle.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Total Passes");
-		lblNewLabel.setBounds(263, 149, 75, 14);
-		contentPane.add(lblNewLabel);
-		
 		totalPasses = new JTextField();
-		totalPasses.setBounds(348, 146, 62, 20);
-		contentPane.add(totalPasses);
+		totalPasses.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		totalPasses.setBounds(604, 294, 147, 40);
+		middle.add(totalPasses);
 		totalPasses.setColumns(10);
 		
+		totalAttendance = new JTextField();
+		totalAttendance.setBounds(246, 438, 147, 40);
+		middle.add(totalAttendance);
+		totalAttendance.setColumns(10);
+		
+		JLabel lblTotalAttendance = new JLabel("Total Attendance");
+		lblTotalAttendance.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		lblTotalAttendance.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalAttendance.setBounds(216, 364, 200, 63);
+		middle.add(lblTotalAttendance);
+		
+		JLabel lblTotalPasses = new JLabel("Total Passes");
+		lblTotalPasses.setFont(new Font("Traditional Arabic", Font.PLAIN, 23));
+		lblTotalPasses.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalPasses.setBounds(604, 238, 147, 40);
+		middle.add(lblTotalPasses);
+		
+		JPanel bottom = new JPanel();
+		add(bottom, BorderLayout.SOUTH);
+		bottom.setLayout(new GridLayout(0, 4, 10, 0));
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		bottom.add(lblNewLabel_3);
+		
 		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(106, 217, 89, 23);
-		contentPane.add(btnBack);
-		
+		btnBack.setPreferredSize(new Dimension(55, 40));
+		bottom.add(btnBack);
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.setBounds(232, 217, 89, 23);
-		contentPane.add(btnSubmit);
+		bottom.add(btnSubmit);
+
+		btnBack.addActionListener(AL1);
+		btnSubmit.addActionListener(AL1);
 		
-		/*ActionListener AL = (ActionListener) new addData2();
-		btnBack.addActionListener(AL);
-		btnSubmit.addActionListener(AL);
-		*/
 	}
-	/*
+	
 	public void actionPerformed(ActionEvent e){
 		Object source = e.getSource();
 		//String something = (String) youritem.getSelectedItem(wutever items is);
 		
 		if (source == btnBack){
 		
-		 * when pushed goes back to main screen
+		 //* when pushed goes back to main screen
 		 
 		 
 		}
 		if(source == btnSubmit){
+      /*
 			if(source.equals("Carnegie")){
 			totPasses =  Integer.parseInt(totalPasses.getText());
 			numVehicle = Integer.parseInt(vehicle.getText());
 			numNonVehicle = Integer.parseInt(nonVehicle.getText());
-			//when adding in total attendance
+			when adding in total attendance
 			//totAttendence = numVehicle + numNonVehicle;
 			//or totAttendence = Integer.parseInt(totalAttendence.getText()); (if decide to add a totalattendence lable and textfield)
 			 *
 			 * 1.set the data into data base
 			 
 			}
+         
 			if(source.equals("Clay Pit")){
 				totPasses =  Integer.parseInt(totalPasses.getText());
 				numVehicle = Integer.parseInt(vehicle.getText());
@@ -204,12 +217,13 @@ public class addData2 extends JFrame  {
 				//when adding in total attendance
 				//totAttendence = numVehicle + numNonVehicle;
 				//or totAttendence = Integer.parseInt(totalAttendence.getText()); (if decide to add a totalattendence lable and textfield)
-				/*
+				
 				 * 1.set the data into data base
 				 * 2.display to screen what was added 
-				 *
+				 
 			}
-		}
-	}
-	*/
+		}*/
+	   }
+	
+   }
 }
