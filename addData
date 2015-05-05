@@ -1,0 +1,215 @@
+import java.awt.Dimension;
+import java.awt.EventQueue;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+import javax.swing.JButton;
+
+
+public class addData2 extends JFrame  {
+	
+	//buttons
+	private JButton btnSubmit = new JButton();
+	private JButton btnBack = new JButton();
+		
+		
+	//textfields
+	private JTextField vehicle;
+	private JTextField nonVehicle;
+	private JTextField totalPasses;
+		
+	//variables from textfields
+	private int totalVehicle = 0;
+	private int totPasses = 0;
+	private int numVehicle = 0;
+	private int numNonVehicle = 0;
+
+	private JPanel contentPane;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					addData2 frame = new addData2();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+
+
+	/**
+	 * Create the frame.
+	 */
+	public addData2() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+				
+		JLabel selParkLbl = new JLabel("Select Park");
+		selParkLbl.setBounds(78, 11, 117, 30);
+		contentPane.add(selParkLbl);
+		
+		JComboBox selectParks = new JComboBox();
+		selectParks.setPreferredSize(new Dimension(50, 20));
+		selectParks.setModel(new DefaultComboBoxModel(new String[] {" ", "Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocohillo Wells", "Prairie City"}));
+		selectParks.setBounds(200, 16, 100, 20);
+		contentPane.add(selectParks);
+		
+		JLabel lblAttendance = new JLabel("Attendance");
+		lblAttendance.setPreferredSize(new Dimension(100, 14));
+		lblAttendance.setMaximumSize(new Dimension(100, 14));
+		lblAttendance.setBounds(78, 74, 75, 14);
+		contentPane.add(lblAttendance);
+		
+		JLabel lblPasses = new JLabel("Passes");
+		lblPasses.setBounds(313, 74, 46, 14);
+		contentPane.add(lblPasses);
+		
+		JLabel lblVe = new JLabel("Vehicle");
+		lblVe.setBounds(33, 110, 46, 14);
+		contentPane.add(lblVe);
+		
+		JLabel lblNonVehicle = new JLabel("Non Vehicle");
+		lblNonVehicle.setMaximumSize(new Dimension(99999, 14));
+		lblNonVehicle.setPreferredSize(new Dimension(75, 14));
+		lblNonVehicle.setBounds(33, 149, 75, 14);
+		contentPane.add(lblNonVehicle);
+		
+		vehicle = new JTextField();
+		vehicle.setBounds(109, 107, 86, 20);
+		contentPane.add(vehicle);
+		vehicle.setColumns(10);
+		
+		nonVehicle = new JTextField();
+		nonVehicle.setBounds(109, 146, 86, 20);
+		contentPane.add(nonVehicle);
+		nonVehicle.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Total Passes");
+		lblNewLabel.setBounds(263, 149, 75, 14);
+		contentPane.add(lblNewLabel);
+		
+		totalPasses = new JTextField();
+		totalPasses.setBounds(348, 146, 62, 20);
+		contentPane.add(totalPasses);
+		totalPasses.setColumns(10);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(106, 217, 89, 23);
+		contentPane.add(btnBack);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(232, 217, 89, 23);
+		contentPane.add(btnSubmit);
+		
+		/*ActionListener AL = (ActionListener) new addData2();
+		btnBack.addActionListener(AL);
+		btnSubmit.addActionListener(AL);
+		*/
+	}
+	/*
+	public void actionPerformed(ActionEvent e){
+		Object source = e.getSource();
+		//String something = (String) youritem.getSelectedItem(wutever items is);
+		
+		if (source == btnBack){
+		
+		 * when pushed goes back to main screen
+		 
+		 
+		}
+		if(source == btnSubmit){
+			if(source.equals("Carnegie")){
+			totPasses =  Integer.parseInt(totalPasses.getText());
+			numVehicle = Integer.parseInt(vehicle.getText());
+			numNonVehicle = Integer.parseInt(nonVehicle.getText());
+			//when adding in total attendance
+			//totAttendence = numVehicle + numNonVehicle;
+			//or totAttendence = Integer.parseInt(totalAttendence.getText()); (if decide to add a totalattendence lable and textfield)
+			 *
+			 * 1.set the data into data base
+			 
+			}
+			if(source.equals("Clay Pit")){
+				totPasses =  Integer.parseInt(totalPasses.getText());
+				numVehicle = Integer.parseInt(vehicle.getText());
+				numNonVehicle = Integer.parseInt(nonVehicle.getText());
+				//when adding in total attendance
+				//totAttendence = numVehicle + numNonVehicle;
+				//or totAttendence = Integer.parseInt(totalAttendence.getText()); (if decide to add a totalattendence lable and textfield)
+				/*
+				 * 1.set the data into data base
+				 * 2.display to screen what was added 
+				 *
+			}
+			if(source.equals("Heber Dunes")){
+				totPasses =  Integer.parseInt(totalPasses.getText());
+				numVehicle = Integer.parseInt(vehicle.getText());
+				numNonVehicle = Integer.parseInt(nonVehicle.getText());
+				//when adding in total attendance
+				//totAttendence = numVehicle + numNonVehicle;
+				//or totAttendence = Integer.parseInt(totalAttendence.getText()); (if decide to add a totalattendence lable and textfield)
+				/*
+				 * 1.set the data into data base
+				 * 2.display to screen what was added 
+				 *
+			}
+			if(source.equals("Hollister Hills")){
+				totPasses =  Integer.parseInt(totalPasses.getText());
+				numVehicle = Integer.parseInt(vehicle.getText());
+				numNonVehicle = Integer.parseInt(nonVehicle.getText());
+				//when adding in total attendance
+				//totAttendence = numVehicle + numNonVehicle;
+				//or totAttendence = Integer.parseInt(totalAttendence.getText()); (if decide to add a totalattendence lable and textfield)
+				/*
+				 * 1.set the data into data base
+				 * 2.display to screen what was added 
+				 *
+			}
+			if(source.equals("Hungry Valley")){
+				totPasses =  Integer.parseInt(totalPasses.getText());
+				numVehicle = Integer.parseInt(vehicle.getText());
+				numNonVehicle = Integer.parseInt(nonVehicle.getText());
+				//when adding in total attendance
+				//totAttendence = numVehicle + numNonVehicle;
+				//or totAttendence = Integer.parseInt(totalAttendence.getText()); (if decide to add a totalattendence lable and textfield)
+				/*
+				 * 1.set the data into data base
+				 * 2.display to screen what was added 
+				 *
+			}
+			if(source.equals("Oceano Dunes")){
+				totPasses =  Integer.parseInt(totalPasses.getText());
+				numVehicle = Integer.parseInt(vehicle.getText());
+				numNonVehicle = Integer.parseInt(nonVehicle.getText());
+				//when adding in total attendance
+				//totAttendence = numVehicle + numNonVehicle;
+				//or totAttendence = Integer.parseInt(totalAttendence.getText()); (if decide to add a totalattendence lable and textfield)
+				/*
+				 * 1.set the data into data base
+				 * 2.display to screen what was added 
+				 *
+			}
+		}
+	}
+	*/
+}
