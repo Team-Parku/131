@@ -73,7 +73,7 @@ public class EditFunction extends HomeScreen implements ActionListener {
     // action listeners!  
       attendance.addActionListener(this);
       passes.addActionListener(this);
-      main.addActionListener(AL);        /*<-------------------- needs to change this actionListener */
+      main.addActionListener(this);        /*<-------------------- needs to change this actionListener */
     // setting the frame!  
       frame.pack();
       frame.setSize(580,220);
