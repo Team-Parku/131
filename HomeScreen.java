@@ -8,32 +8,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.table.*;
-import javax.AdminBox.*;
 
 public class HomeScreen implements ActionListener {
-	
+   
 	static JFrame frm;
 	static CardLayout contentPaneLayout;
 	static JPanel contentPane;
 	static JPanel buttonsPanel;
 	static JTable totalsTable = new JTable();
 	static JTable reportTable = new JTable();
-	/*private TableModel Model = new DefaultTableModel(data, columnNames) {
-		public boolean isCellEditable(int row, int column) {
-			return false;
-		}
-	}; */
-	
 	
 	private static JButton[] but = new JButton[6];
 	private static String[] columnNames = {"Day", "Vehicle", "Non-Vehicle", "Total Attendance", "Total Passes", "Paid Conversion Total", "Free Conversion Total"};
-	private static JComboBox<String> yearList;
-	private static JComboBox<String> monthList;
+   private static String[] parkNames = {"Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocotillo Wells", "Prairie City"};
+	private static Integer[] Months = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+   private static JComboBox<String> yearList;
+	private static JComboBox<Integer> monthList;
 	private static JComboBox<String> nameList;
 	
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
-		for(int i = 0; i < but.length - 1; i++) {
+		for(int i = 0; i < but.length; i++) {
 			if (source == but[i]) {
 				contentPaneLayout.show(contentPane, (String) e.getActionCommand());
 			} else if (source == but[4]) {
@@ -65,17 +60,18 @@ public class HomeScreen implements ActionListener {
      //  contentPane.add(Login, "Login");
      //  contentPaneLayout.show(Login, "Login");
      
-     		 //constructor for classes    
+      //constructor for classes    
 		addNotes note = new addNotes(contentPane);
 		contentPane.add(note, "Add Notes");
 		addData2 data = new addData2(contentPane);
-      		contentPane.add(data, "Add Data");
+      contentPane.add(data, "Add Data");
 
 		frm.pack();
 		frm.setSize(width, height);
 		frm.setResizable(false);
 		frm.setLocationRelativeTo(null);
 		frm.setVisible(true);
+      
       
       
       /* //////////////////////////////////////// */
@@ -148,10 +144,10 @@ public class HomeScreen implements ActionListener {
 		JPanel reportOptions = new JPanel();
 		JLabel parkName = new JLabel("Park: ");
 		String[] listData = {"", "Name x", "name y", "name z"};
-		nameList = new JComboBox<String>(listData);
+		nameList = new JComboBox<String>(parkNames);
 		nameList.setPreferredSize(new Dimension(250, 25));
 		JLabel dateMonth = new JLabel("Month: ");
-		monthList = new JComboBox<String>(listData);
+		monthList = new JComboBox<Integer>(Months);
 		JLabel dateYear = new JLabel("Year: ");
 		yearList = new JComboBox<String>(listData);
 		
