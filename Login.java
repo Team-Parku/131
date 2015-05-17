@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -6,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import java.sql.*;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -19,7 +21,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.Color;
+
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 
 public class Login {
@@ -62,16 +66,27 @@ public class Login {
 	 */
 	private void initialize() {
 		frmO = new JFrame();
+		frmO.setFont(new Font("Verdana", Font.PLAIN, 12));
+		frmO.setResizable(false);
+		frmO.setBackground(new Color(255, 240, 245));
 		frmO.getContentPane().setBackground(new Color(105, 105, 105));
-		frmO.setTitle("OHMVR Attendance Data");
-		frmO.setBounds(100, 100, 687, 437);
+		frmO.setTitle("OHMVRDAD Login");
+		frmO.setBounds(100, 100, 502, 324);
 		frmO.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmO.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("Enter");
-		btnNewButton.setForeground(new Color(112, 128, 144));
-		btnNewButton.setBackground(new Color(192, 192, 192));
-		btnNewButton.addActionListener(new ActionListener() {
+		JLabel wrongUorP = new JLabel("Username and/or password is wrong. Please try again.");
+		wrongUorP.setVisible(false);
+		wrongUorP.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		wrongUorP.setBackground(new Color(192, 192, 192));
+		wrongUorP.setForeground(new Color(255, 192, 203));
+		wrongUorP.setBounds(83, 229, 373, 27);
+		frmO.getContentPane().add(wrongUorP);
+		
+		JButton enterButton = new JButton("Enter");
+		enterButton.setForeground(new Color(105, 105, 105));
+		enterButton.setBackground(new Color(211, 211, 211));
+		enterButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				String sql = "select * from AdminUser where username=? and password=?";
@@ -88,7 +103,7 @@ public class Login {
 				s.setVisible(true);
 				}	
 				else{
-					JOptionPane.showMessageDialog(null, "Username and Password is incorrect");
+					wrongUorP.setVisible(true);
 					
 				}
 				}
@@ -99,33 +114,34 @@ public class Login {
 				
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(258, 316, 143, 36);
-		frmO.getContentPane().add(btnNewButton);
+		enterButton.setFont(new Font("Verdana", Font.PLAIN, 14));
+		enterButton.setBounds(201, 191, 89, 27);
+		frmO.getContentPane().add(enterButton);
 		
 		usernameField = new JTextField();
-		usernameField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		usernameField.setBounds(326, 162, 189, 36);
+		usernameField.setFont(new Font("Verdana", Font.PLAIN, 14));
+		usernameField.setBounds(228, 108, 163, 27);
 		frmO.getContentPane().add(usernameField);
 		usernameField.setColumns(10);
 		
 		JLabel username = new JLabel("Username :");
 		username.setForeground(new Color(192, 192, 192));
-		username.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		username.setBounds(138, 162, 143, 38);
+		username.setFont(new Font("Verdana", Font.PLAIN, 18));
+		username.setBounds(101, 108, 133, 27);
 		frmO.getContentPane().add(username);
 		
 		JLabel password = new JLabel("Password :");
 		password.setForeground(new Color(192, 192, 192));
-		password.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		password.setBounds(138, 211, 143, 36);
+		password.setFont(new Font("Verdana", Font.PLAIN, 18));
+		password.setBounds(101, 146, 143, 27);
 		frmO.getContentPane().add(password);
 		
-		JLabel login = new JLabel("Login");
+		JLabel login = new JLabel("OHMVR Division Attendance Database");
 		login.setForeground(new Color(204, 204, 204));
-		login.setFont(new Font("Tahoma", Font.PLAIN, 36));
-		login.setBounds(281, 37, 95, 100);
+		login.setFont(new Font("Verdana", Font.PLAIN, 18));
+		login.setBounds(10, 11, 392, 27);
 		frmO.getContentPane().add(login);
+	
 		
 		passwordField = new JPasswordField();
 		passwordField.addKeyListener(new KeyAdapter() {
@@ -147,7 +163,7 @@ public class Login {
 					s.setVisible(true);
 					}	
 					else{
-						JOptionPane.showMessageDialog(null, "Username and Password is incorrect");
+						wrongUorP.setVisible(true);
 						
 					}
 					}
@@ -160,17 +176,17 @@ public class Login {
 					
 			}
 		});
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		passwordField.setBounds(326, 211, 189, 38);
+		passwordField.setFont(new Font("Verdana", Font.PLAIN, 14));
+		passwordField.setBounds(228, 146, 163, 27);
 		frmO.getContentPane().add(passwordField);
+	
 		
-		JButton btnReadOnly = new JButton("Read Only...");
-		btnReadOnly.setForeground(Color.BLUE);
-		btnReadOnly.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnReadOnly.setBounds(566, 364, 95, 23);
-		frmO.getContentPane().add(btnReadOnly);
+		JButton readOnly = new JButton("Read Only");
+		readOnly.setForeground(new Color(30, 144, 255));
+		readOnly.setFont(new Font("Verdana", Font.PLAIN, 10));
+		readOnly.setBounds(383, 261, 103, 23);
+		frmO.getContentPane().add(readOnly);
+		
+
 	}
 }
