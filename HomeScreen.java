@@ -7,7 +7,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import javax.swing.table.*;
+import javax.AdminBox.*;
 
 public class HomeScreen implements ActionListener {
 	
@@ -25,7 +26,7 @@ public class HomeScreen implements ActionListener {
 	
 	
 	private static JButton[] but = new JButton[6];
-	private static String[] columnNames = {"Date", "Vehicles", "Non-Vehicles", "Passes", "Column 5", "Column 6", "awefawefa"};
+	private static String[] columnNames = {"Day", "Vehicle", "Non-Vehicle", "Total Attendance", "Total Passes", "Paid Conversion Total", "Free Conversion Total"};
 	private static JComboBox<String> yearList;
 	private static JComboBox<String> monthList;
 	private static JComboBox<String> nameList;
@@ -71,7 +72,7 @@ public class HomeScreen implements ActionListener {
       
       
       /* //////////////////////////////////////// */
-      contentPaneLayout.show(contentPane, "Main Menu");
+      contentPaneLayout.show(contentPane, "Report");
       /* //////////////////////////////////////// */
       
       
