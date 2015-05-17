@@ -1,0 +1,55 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class addNotes{
+   static BorderLayout contentPaneLayout;
+   static JPanel contentPane;
+   static JLabel label = new JLabel();
+   static JTextField txt = new JTextField();
+   static JButton back = new JButton();
+   static JButton enterNotes = new JButton();
+   static JButton search = new JButton();
+
+   public static void main(String[]args){
+      JFrame frame = new JFrame("Add Notes");
+      contentPane = (JPanel)frame.getContentPane();
+      contentPane.setLayout(contentPaneLayout = new BorderLayout());
+      
+      
+      JPanel top = new JPanel(new FlowLayout());
+      label =  new JLabel("Notes", JLabel.CENTER);
+      top.add(label);
+      contentPane.add(top,BorderLayout.NORTH);
+      
+      JPanel middle = new JPanel(new GridLayout(3,2,2,2));
+      JPanel middle1 = new JPanel(new FlowLayout());
+      label =  new JLabel("Search for date", JLabel.LEFT);
+      txt = new JTextField("",10);
+      middle1.add(label);
+      middle1.add(txt);
+      JPanel middle3 = new JPanel(new FlowLayout());
+      middle3.add(search = new JButton("Search"));
+      JPanel middle2 = new JPanel(new FlowLayout());
+      label = new JLabel("Enter note",JLabel.LEFT);
+      txt = new JTextField("");
+      txt.setPreferredSize(new Dimension(400,50));
+      middle2.add(label);
+      middle2.add(txt);
+      middle.add(middle1);
+      middle.add(middle3);
+      middle.add(middle2);
+      contentPane.add(middle,BorderLayout.CENTER);
+      
+      JPanel bottom = new JPanel(new FlowLayout());
+      bottom.add(back = new JButton("Back"));
+      bottom.add(enterNotes = new JButton("Enter Notes"));
+      contentPane.add(bottom,BorderLayout.SOUTH);
+      
+      frame.pack();
+      frame.setSize(600,220);
+      frame.setResizable(false);
+      frame.setVisible(true);
+      
+   }
+}
