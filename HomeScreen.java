@@ -64,6 +64,13 @@ public class HomeScreen implements ActionListener {
 		contentPane.add("Report", reportScreen);
      //  contentPane.add(Login, "Login");
      //  contentPaneLayout.show(Login, "Login");
+     
+     		 //constructor for classes    
+		addNotes note = new addNotes(contentPane);
+		contentPane.add(note, "Add Notes");
+		addData2 data = new addData2(contentPane);
+      		contentPane.add(data, "Add Data");
+
 		frm.pack();
 		frm.setSize(width, height);
 		frm.setResizable(false);
