@@ -24,7 +24,7 @@ public class HomeScreen implements ActionListener {
 	}; */
 	
 	
-	private static JButton[] but = new JButton[8];
+	private static JButton[] but = new JButton[6];
 	private static String[] columnNames = {"Date", "Vehicles", "Non-Vehicles", "Passes", "Column 5", "Column 6", "awefawefa"};
 	private static JComboBox<String> yearList;
 	private static JComboBox<String> monthList;
@@ -35,7 +35,7 @@ public class HomeScreen implements ActionListener {
 		for(int i = 0; i < but.length - 1; i++) {
 			if (source == but[i]) {
 				contentPaneLayout.show(contentPane, (String) e.getActionCommand());
-			} else if (source == but[6]) {
+			} else if (source == but[4]) {
 				createReport();
 			}
 		}
@@ -61,11 +61,21 @@ public class HomeScreen implements ActionListener {
 		int height = 600;
 		contentPane.add("Main Menu", main);
 		contentPane.add("Report", reportScreen);
+     //  contentPane.add(Login, "Login");
+     //  contentPaneLayout.show(Login, "Login");
 		frm.pack();
 		frm.setSize(width, height);
 		frm.setResizable(false);
 		frm.setLocationRelativeTo(null);
 		frm.setVisible(true);
+      
+      
+      /* //////////////////////////////////////// */
+      contentPaneLayout.show(contentPane, "Main Menu");
+      /* //////////////////////////////////////// */
+      
+      
+      
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -89,18 +99,20 @@ public class HomeScreen implements ActionListener {
 		left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
 		left.add(Box.createVerticalGlue());
 		left.add(Box.createRigidArea(new Dimension(0, 100)));
-		for (int i = 0; i < 4; i++) {
-			left.add(but[i]);
-			left.add(Box.createRigidArea(new Dimension(0, 50)));
-		}
+      left.add(but[0]);
+      left.add(Box.createRigidArea(new Dimension(0, 50)));
+      but[0].addActionListener(AL);
+      left.add(but[1]);
+      left.add(Box.createRigidArea(new Dimension(0, 50)));
+      but[1].addActionListener(AL);
 		left.add(Box.createVerticalGlue());
 		dataNotes.add(scroll);
 		dataNotes.add(Box.createRigidArea(new Dimension(0, 30)));
 		notesArea.add(notesLabel);
 		notesArea.add(notesScroll);
 		dataNotes.add(notesArea);
-		dataNotes.add(but[7]);
-		bigTitle(main, "Overview");
+		dataNotes.add(but[5]);
+		bigTitle(main, "Park Overview");
 		dataArea.add(Box.createHorizontalGlue());
 		dataArea.add(left);
 		dataArea.add(Box.createRigidArea(new Dimension(100, 400)));
@@ -144,11 +156,11 @@ public class HomeScreen implements ActionListener {
 		reportOptions.add(dateYear);
 		reportOptions.add(yearList);
 		reportOptions.add(Box.createRigidArea(new Dimension(20, 0)));
-		reportOptions.add(but[6]);
+		reportOptions.add(but[4]);
 		reportArea.add(reportOptions);
 		reportArea.add(Box.createRigidArea(new Dimension(0, 50)));
 		reportArea.add(scrollPane);
-      reportArea.add(but[5]);
+      reportArea.add(but[3]);
 		bigTitle(main, "Reports");
 		dataArea.add(Box.createHorizontalGlue());
 		dataArea.add(left);
@@ -160,23 +172,13 @@ public class HomeScreen implements ActionListener {
 	public static void createButtons(ActionListener AL) {
 		but[0] = new JButton("Add Data");
 		but[1] = new JButton("Edit Data");
-		but[2] = new JButton("Graphs");
-		but[3] = new JButton("Report");
-		but[4] = new JButton("Notes");
-		but[5] = new JButton("Main Menu");
-		but[6] = new JButton("Create");
-		but[7] = new JButton("Add Notes");
+		but[2] = new JButton("Notes");
+		but[3] = new JButton("Main Menu");
+		but[4] = new JButton("Create");
+		but[5] = new JButton("Add Notes");
 		for (int i = 0; i < but.length; i++) {
 			but[i].addActionListener(AL);
-		}
-	}
-	
-	public static int getWidth() {
-		return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
-	}
-	
-	public static int getHeight() {
-		return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
+		} 
 	}
 	
 	public static void bigTitle(Container c, String title) {
