@@ -8,7 +8,7 @@
  *                       3-OVERNIGHT      *
  *                       4-SPECIAL EVENT  *
  *                       5-BACK TO MAIN   *
- * LAST EDIT:    17 MAY 2015              *
+ * LAST EDIT:    18 MAY 2015              *
  ******************************************/   
 import java.util.*;
                           /* GUI imports:     */
@@ -22,15 +22,22 @@ import java.awt.Container;
 
 public class Attendances extends JPanel{
 
+   private static String[] columnNum = {
+     "Paid Day Use", "Free Day Use", "Overnight", "Boats", "ST PK", 
+     "Paid Conversion Total", "Free Conversion Total"};
+   static JTable table = new JTable();
+   //--------------------------------------------table end
    static CardLayout contentPaneLayout;
    static JPanel contentPane;
    static JLabel attendanceLabel;
    static JLabel tipLabel;
+   static JButton save = new JButton("Save");
    static JButton paidDayUse = new JButton("Paid Day Use");
    static JButton freeDayUse = new JButton("Free Day Use");
    static JButton overnight = new JButton("Overnight");
    static JButton specialEvent = new JButton("Special Event");
    static JButton back1 = new JButton("Go Back");
+   static ActionListener act;
    
    public Attendances(JPanel contentPane){
    
@@ -41,22 +48,47 @@ public class Attendances extends JPanel{
    private void attendanceWindow(){ 
    // components
       setLayout(contentPaneLayout=new CardLayout());
-      attendanceLabel = new JLabel("Editing Attendance");
+      attendanceLabel = new JLabel("Editing Attendance",JLabel.CENTER);
       JPanel attendancePanel = new JPanel(new BorderLayout());
-      JPanel north1 = new JPanel(new FlowLayout());
+      JPanel north1 = new JPanel(new GridLayout(3,1));
       north1.add(attendanceLabel);
    // layout [center]
-      JPanel center1 = new JPanel(new GridLayout(3,1));
+      JPanel center1 = new JPanel(new FlowLayout());
       tipLabel = new JLabel(
-         "You may edit the following!");
-      center1.add(tipLabel);
+         "Select Park");
+      north1.add(tipLabel);
+      tipLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
+   // drop down park menu-----------
+      JComboBox selectParks = new JComboBox();
+      selectParks.setFont(new Font("Tahoma", Font.PLAIN, 18));
+      selectParks.setPreferredSize(new Dimension(110, 35));
+      selectParks.setMinimumSize(new Dimension(11000, 20));
+      selectParks.setBackground(SystemColor.inactiveCaptionBorder);
+      selectParks.setModel(new DefaultComboBoxModel(new String[] {"Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocohillo Wells", "Prairie City"}));
+      north1.add(selectParks);
+      //----end of drop down menu
    // layout [south]      
-      JPanel south1 = new JPanel(new GridLayout(1,5));
-      south1.add(paidDayUse);
+      JPanel south1 = new JPanel(new GridLayout(2,1));
+      /*south1.add(paidDayUse);
       south1.add(freeDayUse);
       south1.add(overnight);
-      south1.add(specialEvent);
+      south1.add(specialEvent);*/
+      center1.add(save);
       south1.add(back1);
+   // --------data table start-------------------------
+      
+      Object[][] data = new Object[31][13];
+      JTable table = new JTable(data, columnNum);
+      table.setPreferredScrollableViewportSize(new Dimension(700, 375));
+      table.setFillsViewportHeight(true);
+      table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+      //Create the scroll pane and add the table to it.
+      JScrollPane scrollPane = new JScrollPane(table);
+   
+      //Add the scroll pane to this panel.
+      center1.add(scrollPane);
+   
+   // --------data table end --------------------------
    // overall frame
       attendancePanel.add(north1, BorderLayout.NORTH);
       attendancePanel.add(center1, BorderLayout.CENTER);
