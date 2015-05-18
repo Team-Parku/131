@@ -3,7 +3,7 @@
  * This class is a child of Report Screen and  *
  * it displays the Edit Options panel with     *
  * three buttons: ATTENDANCE,PASSES,MAIN MENU. *
- * LAST EDIT:    17 MAY 2015                   *
+ * LAST EDIT:    18 MAY 2015                   *
 \***********************************************/
 
 import java.util.*;
@@ -46,7 +46,7 @@ public class EditFunction extends JPanel{
    }
    
    private void editOptionWindow(){
-      frame = new JLabel("Edit Options");
+      frame = new JLabel("Edit Options", JLabel.CENTER);
       label = new JLabel("Select one to edit:",JLabel.CENTER);
     //contentPane = (JPanel) frame.getContentPane();
       setLayout(contentPaneLayout=new CardLayout());
@@ -63,7 +63,6 @@ public class EditFunction extends JPanel{
       all.add(base);
     //adds to main pane
       add(all, "Edit Options");                                      
-    //end of edit option window
     //action listeners
       main.addActionListener(
             new ActionListener()
