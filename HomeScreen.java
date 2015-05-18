@@ -60,7 +60,15 @@ public class HomeScreen implements ActionListener {
      //  contentPane.add(Login, "Login");
      //  contentPaneLayout.show(Login, "Login");
      
-      //constructor for classes    
+	      //constructor for classes
+	      EditFunction edit = new EditFunction(contentPane);
+	      Passes pass = new Passes(contentPane);
+	      Attendances attend = new Attendances(contentPane);
+	      
+	      contentPane.add("Edit Data", edit);
+	      contentPane.add(pass);
+	      contentPane.add(attend);	
+	      
 		addNotes note = new addNotes(contentPane);
 		contentPane.add(note, "Add Notes");
 		addData2 data = new addData2(contentPane);
