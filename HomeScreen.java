@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.table.*;
+import javax.swing.table.AbstractTableModel;
 
 public class HomeScreen implements ActionListener {
    
@@ -22,9 +23,15 @@ public class HomeScreen implements ActionListener {
 	private static String[] columnNames = {"Day", "Vehicle", "Non-Vehicle", "Total Attendance", "Total Passes", "Paid Conversion Total", "Free Conversion Total"};
    private static String[] parkNames = {"Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocotillo Wells", "Prairie City"};
 	private static Integer[] Months = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-   private static JComboBox<String> yearList;
+   private static JComboBox<Integer> yearList;
 	private static JComboBox<Integer> monthList;
 	private static JComboBox<String> nameList;
+   
+  //  class MyTableModel extends DefaultTableModel {
+//       public boolean isCellEditable(int row, int col) {
+//          return false;
+//       }
+//    }
 	
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
@@ -100,10 +107,11 @@ public class HomeScreen implements ActionListener {
 		JLabel notesLabel = new JLabel("Notes: ");
 		JTextArea notesLoc = new JTextArea("Notes entered will apear here.", 5, 50);
 		JScrollPane notesScroll = new JScrollPane(notesLoc);
-		notesLoc.setEditable(false);
+		notesLoc.setEditable(false); 
 		Object[][] testData = new Object[100][10];
 		totalsTable = new JTable(testData, columnNames); //DUMMY DATA; FOR DISPLAY PURPOSES ONLY
 		totalsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+      totalsTable.setModel(new MyTableModel());
 		JScrollPane scroll = new JScrollPane(totalsTable);
 		scroll.setPreferredSize(new Dimension(500, 250));
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -151,13 +159,12 @@ public class HomeScreen implements ActionListener {
 		left.add(Box.createVerticalGlue());
 		JPanel reportOptions = new JPanel();
 		JLabel parkName = new JLabel("Park: ");
-		String[] listData = {"", "Name x", "name y", "name z"};
 		nameList = new JComboBox<String>(parkNames);
 		nameList.setPreferredSize(new Dimension(250, 25));
 		JLabel dateMonth = new JLabel("Month: ");
 		monthList = new JComboBox<Integer>(Months);
 		JLabel dateYear = new JLabel("Year: ");
-		yearList = new JComboBox<String>(listData);
+		yearList = new JComboBox<Integer>();
 		
 		reportOptions.add(parkName);
 		reportOptions.add(nameList);
