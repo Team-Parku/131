@@ -1,8 +1,10 @@
-/*****************************\
- *AUTHOR:       Kathleen
- *GUI:          EDIT / DEL 
- *LAST EDIT:    17 MAY 2015, SUN
-\*****************************/
+/***********************************************\
+ * GUI:          EDIT / DEL                    *
+ * This class is a child of Report Screen and  *
+ * it displays the Edit Options panel with     *
+ * three buttons: ATTENDANCE,PASSES,MAIN MENU. *
+ * LAST EDIT:    17 MAY 2015                   *
+\***********************************************/
 
 import java.util.*;
                           /* GUI imports:     */
