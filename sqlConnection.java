@@ -7,8 +7,8 @@ public class sqlConnection {
 	{
 		try{
 			Class.forName("org.sqlite.JDBC");
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\Tuff Genius\\Documents\\SQlite\\AdminData.sqlite");
-		    JOptionPane.showMessageDialog(null, "Connection Successful!");
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:Parku.sqlite");
+		   //JOptionPane.showMessageDialog(null, "Connection Successful!");
 			return conn;
 		}
 		catch(Exception e){
