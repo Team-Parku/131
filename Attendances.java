@@ -1,14 +1,13 @@
 /******************************************
  * This class is a child of EditFunction. *
  * It provides the function for editing   *
- * and displaying Attendance Data.        *
- * It contains 5 buttons:                 *
- *                       1-PAID DAY USE   *
- *                       2-FREE DAY USE   *
- *                       3-OVERNIGHT      *
- *                       4-SPECIAL EVENT  *
- *                       5-BACK TO MAIN   *
- * LAST EDIT:    17 MAY 2015              *
+ * and displaying Attendance Data. Can    *
+ * search for the 449 by month;year;park. *
+ * It contains 3 buttons:                 *
+ *                       1-Back to Main   *
+ *                       2-Save           *
+ *                       3-Search         *
+ * LAST EDIT:    19 MAY 2015              *
  ******************************************/   
 import java.util.*;
                           /* GUI imports:     */
@@ -22,15 +21,24 @@ import java.awt.Container;
 
 public class Attendances extends JPanel{
 
+   private static String[] columnNum = {
+     "Paid Day Use", "Free Day Use", "Overnight", "Boats", "ST PK", 
+     "Paid Conversion Total", "Free Conversion Total"};
+   static JTable table = new JTable();
+   //--------------------------------------------table end
    static CardLayout contentPaneLayout;
    static JPanel contentPane;
    static JLabel attendanceLabel;
    static JLabel tipLabel;
+   static JButton save = new JButton("Save");
    static JButton paidDayUse = new JButton("Paid Day Use");
    static JButton freeDayUse = new JButton("Free Day Use");
    static JButton overnight = new JButton("Overnight");
    static JButton specialEvent = new JButton("Special Event");
    static JButton back1 = new JButton("Go Back");
+   static JButton search = new JButton("Search");
+   static ActionListener act;
+   static JTextField year;
    
    public Attendances(JPanel contentPane){
    
@@ -41,22 +49,68 @@ public class Attendances extends JPanel{
    private void attendanceWindow(){ 
    // components
       setLayout(contentPaneLayout=new CardLayout());
-      attendanceLabel = new JLabel("Editing Attendance");
+      attendanceLabel = new JLabel("...Attendance (Edit Mode)");
       JPanel attendancePanel = new JPanel(new BorderLayout());
-      JPanel north1 = new JPanel(new FlowLayout());
+      
+   // layout [north1]   
+      JPanel north1 = new JPanel(new GridLayout(4,2)); //ideal (3,3)
+        
       north1.add(attendanceLabel);
+      north1.add(search);
    // layout [center]
-      JPanel center1 = new JPanel(new GridLayout(3,1));
+      JPanel center1 = new JPanel(new FlowLayout());
+   // drop down month menu-----------Month
+      JLabel tipMonth = new JLabel("Select Month :  ", SwingConstants.RIGHT);
+      tipMonth.setFont(new Font("Tahoma", Font.PLAIN, 20));
+      north1.add(tipMonth); 
+      JComboBox selectMonth = new JComboBox();
+      selectMonth.setFont(new Font("Tahoma", Font.PLAIN, 18));
+      selectMonth.setPreferredSize(new Dimension(110, 35));
+      selectMonth.setMinimumSize(new Dimension(11000, 20));
+      selectMonth.setBackground(SystemColor.inactiveCaptionBorder);
+      selectMonth.setModel(new DefaultComboBoxModel(new String[] {
+         "---","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"}));
+      north1.add(selectMonth);
+   // drop down month end------------Month
       tipLabel = new JLabel(
-         "You may edit the following!");
-      center1.add(tipLabel);
+         "Select Park :  ", SwingConstants.RIGHT);
+      north1.add(tipLabel);
+      tipLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+   // drop down park menu-----------8 parks
+      JComboBox selectParks = new JComboBox();
+      selectParks.setFont(new Font("Tahoma", Font.PLAIN, 18));
+      selectParks.setPreferredSize(new Dimension(110, 35));
+      selectParks.setMinimumSize(new Dimension(11000, 20));
+      selectParks.setBackground(SystemColor.inactiveCaptionBorder);
+      selectParks.setModel(new DefaultComboBoxModel(new String[] {
+         "---","Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", 
+         "Oceano Dunes", "Ocohillo Wells", "Prairie City"}));
+      north1.add(selectParks);
+      //----end of drop down menu------8 parks
+   // drop down year menu-----------YEAR
+      JLabel tipYear = new JLabel("Enter Year (####) :  ", SwingConstants.RIGHT);
+      tipYear.setFont(new Font("Tahoma", Font.PLAIN, 20));
+      north1.add(tipYear); 
+      year = new JTextField();
+      north1.add(year);
+   // drop down year end------------YEAR
    // layout [south]      
-      JPanel south1 = new JPanel(new GridLayout(1,5));
-      south1.add(paidDayUse);
-      south1.add(freeDayUse);
-      south1.add(overnight);
-      south1.add(specialEvent);
+      JPanel south1 = new JPanel(new FlowLayout());
       south1.add(back1);
+   // --------data table start-------------------------
+      
+      Object[][] data = new Object[100][100];
+      JTable table = new JTable(data, columnNum);
+      table.setPreferredScrollableViewportSize(new Dimension(900, 375));
+      table.setFillsViewportHeight(true);
+      table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+      //Create the scroll pane and add the table to it.
+      JScrollPane scrollPane = new JScrollPane(table);
+   
+      //Add the scroll pane to this panel.
+      center1.add(scrollPane);
+      center1.add(save);
+   // --------data table end --------------------------
    // overall frame
       attendancePanel.add(north1, BorderLayout.NORTH);
       attendancePanel.add(center1, BorderLayout.CENTER);
