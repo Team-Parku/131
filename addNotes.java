@@ -16,7 +16,7 @@ class addNotes extends JPanel {
    private BorderLayout contentPaneLayout;
    private JPanel contentPane;
    //buttons   
-   private JButton back = new JButton();
+   private JButton back2 = new JButton();
    private JButton enterNotes = new JButton();
    //text fields
    private JTextField searchDate;
@@ -28,8 +28,6 @@ class addNotes extends JPanel {
    private String date = "";
    private String noteEntered = "";
    private static String[] parkList ={"Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocohillo Wells", "Prairie City"};
-   //private static String[] monthList = {"1","2","3","4","5","6","7","8","9","10","11","12"};
-   
    private JComboBox<String> parkSelect;
    //private JComboBox<String> parkList;
    
@@ -53,7 +51,9 @@ class addNotes extends JPanel {
 		lblAddNote.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblAddNote.setHorizontalAlignment(SwingConstants.CENTER);
 		top.add(lblAddNote);
-				
+		
+		
+		
 		//middle of borderlayout
 		JPanel middle = new JPanel();
 		add(middle, BorderLayout.CENTER);
@@ -65,13 +65,12 @@ class addNotes extends JPanel {
 		lblNewLabel_1.setBounds(340, 35, 112, 39);
 		middle.add(lblNewLabel_1);
 		
-		JComboBox selectPark = new JComboBox();
+		JComboBox selectPark = new JComboBox<String>(parkList);
 		selectPark.setBounds(531, 37, 141, 39);
 		selectPark.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		selectPark.setPreferredSize(new Dimension(110, 35));
 		selectPark.setMinimumSize(new Dimension(11000, 20));
 		selectPark.setBackground(SystemColor.inactiveCaptionBorder);
-		selectPark.setModel(new DefaultComboBoxModel(new String[] {"Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocohillo Wells", "Prairie City"}));
 		middle.add(selectPark);
 		
 		//enter notes label and text area
@@ -81,15 +80,14 @@ class addNotes extends JPanel {
 		lblEnterNote.setBounds(437, 343, 141, 39);
 		middle.add(lblEnterNote);
 		
-		JTextArea noteEntered = new JTextArea();
-		noteEntered.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		noteEntered.setBounds(316, 393, 378, 82);
-		middle.add(noteEntered);
+		JTextArea notesEntered = new JTextArea();
+		notesEntered.setBounds(316, 393, 378, 82);
+		middle.add(notesEntered);
 		
 		//enter date label and text area
 		JLabel lblEnterDate = new JLabel("Enter Date:");
 		lblEnterDate.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblEnterDate.setBounds(260, 196, 117, 31);
+		lblEnterDate.setBounds(273, 190, 117, 49);
 		middle.add(lblEnterDate);
 		
 		//date combo boxes and labels		
@@ -114,8 +112,7 @@ class addNotes extends JPanel {
 		Year.setHorizontalAlignment(SwingConstants.CENTER);
 		Year.setBounds(608, 160, 68, 25);
 		middle.add(Year);
-		
-				
+      		
 		//bottom of border layout
 		JPanel bottom = new JPanel();
 		add(bottom, BorderLayout.SOUTH);
@@ -124,46 +121,46 @@ class addNotes extends JPanel {
 		bottom.add(lblNewLabel);
 		
 		//buttons	
-		JButton btnBack = new JButton("Back");
-		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		btnBack.setMaximumSize(new Dimension(89, 55));
-		btnBack.setSize(new Dimension(55, 40));
-		bottom.add(btnBack);
+		JButton back2 = new JButton("Back");
+		back2.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		back2.setMaximumSize(new Dimension(89, 55));
+		back2.setSize(new Dimension(55, 40));
+		bottom.add(back2);
 				
-		JButton btnEnterNotes = new JButton("Enter Notes");
-		btnEnterNotes.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		bottom.add(btnEnterNotes);
-		      
+		JButton enterNotes = new JButton("Enter Notes");
+		enterNotes.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		bottom.add(enterNotes);
+      
       
    
       
       //homescrren constuctor
-      HomeScreen home = new HomeScreen();
+      //HomeScreen home = new HomeScreen();
 
       
        AL2 = new ActionListener(){
       
        public void actionPerformed(ActionEvent ae)
             {
-                if (ae.getSource() == back)
+                if (ae.getSource() == back2)
                 {
                       CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                       cardLayout.previous(contentPane);
-                      cardLayout.previous(contentPane);
+                      //cardLayout.previous(contentPane);
 
                 }
                 if(ae.getSource() == enterNotes){
                      String parkSelection = (String) selectPark.getSelectedItem();
-                     date = searchDate.getText();
+                     String monthSelect = (String)comboMonth.getSelectedItem();
+                     String yearSelect = (String)comboYear.getSelectedItem();
                      noteEntered = notesEntered.getText();                    
                      /*//add to data base.
                      */
                      
                      //clears textfields for new entry
-                     searchDate.setText("");
                      notesEntered.setText("");
                      
-                     //switch back to main screen after note is entered
+                     //switch back2 to main screen after note is entered
                      CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                      cardLayout.previous(contentPane);
                      cardLayout.previous(contentPane);
@@ -177,10 +174,9 @@ class addNotes extends JPanel {
       
       //action listeners      
       enterNotes.addActionListener(AL2);
-      back.addActionListener(AL2);
+      back2.addActionListener(AL2);
 
      
       }//end init
         
 }//end class  
-  
