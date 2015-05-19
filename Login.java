@@ -28,12 +28,13 @@ import javax.swing.UIManager;
 
 public class Login {
 
-	private JFrame frmO;
+	public JFrame frmO;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+      HomeScreen s = new HomeScreen();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -99,8 +100,10 @@ public class Login {
 				if(rs.next()){
 				JOptionPane.showMessageDialog(null, "Username and Password is correct");
 				frmO.dispose();
-				AdminBox s = new AdminBox();
-				s.setVisible(true);
+            HomeScreen s = new HomeScreen();
+            frmO.getContentPane().add(s.frm);
+            //frmO.getContentPane().show(s.contentPane, "Main Menu");
+ 				frmO.setVisible(true);
 				}	
 				else{
 					wrongUorP.setVisible(true);
@@ -114,6 +117,9 @@ public class Login {
 				
 			}
 		});
+      //HomeScreen home = new HomeScreen();
+      //frmO.getContentPane().add("", home);
+      
 		enterButton.setFont(new Font("Verdana", Font.PLAIN, 14));
 		enterButton.setBounds(201, 191, 89, 27);
 		frmO.getContentPane().add(enterButton);
@@ -159,8 +165,7 @@ public class Login {
 					if(rs.next()){
 					JOptionPane.showMessageDialog(null, "Username and Password is correct");
 					frmO.dispose();
-					AdminBox s = new AdminBox();
-					s.setVisible(true);
+               HomeScreen.main(new String[1]);
 					}	
 					else{
 						wrongUorP.setVisible(true);
@@ -169,6 +174,7 @@ public class Login {
 					}
 					catch(Exception e){
 						JOptionPane.showMessageDialog(null, e);
+                  System.out.println("this is the second thing");
 						
 					}
 					

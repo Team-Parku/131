@@ -115,6 +115,9 @@ class addNotes extends JPanel {
                       CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                       cardLayout.previous(contentPane);
                       cardLayout.previous(contentPane);
+                      cardLayout.previous(contentPane);
+                      cardLayout.previous(contentPane);
+                      cardLayout.previous(contentPane);
 
                 }
                 if(ae.getSource() == enterNotes){

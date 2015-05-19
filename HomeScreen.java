@@ -19,7 +19,7 @@ public class HomeScreen implements ActionListener {
 	static JTable totalsTable = new JTable();
 	static JTable reportTable = new JTable();
 	
-	private static JButton[] but = new JButton[6];
+	private static JButton[] but = new JButton[8];
 	private static String[] columnNames = {"Day", "Vehicle", "Non-Vehicle", "Total Attendance", "Total Passes", "Paid Conversion Total", "Free Conversion Total"};
    private static String[] parkNames = {"Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocotillo Wells", "Prairie City"};
 	private static Integer[] Months = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
@@ -27,12 +27,6 @@ public class HomeScreen implements ActionListener {
 	private static JComboBox<Integer> monthList;
 	private static JComboBox<String> nameList;
    
-  //  class MyTableModel extends DefaultTableModel {
-//       public boolean isCellEditable(int row, int col) {
-//          return false;
-//       }
-//    }
-	
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		for(int i = 0; i < but.length; i++) {
@@ -52,8 +46,10 @@ public class HomeScreen implements ActionListener {
 	
 	public static void main(String[] args) {
 		ActionListener AL = new HomeScreen();
-		frm = new JFrame("OVR Attendance");
+      frm = new JFrame("OHMVRDAD Login");
+//       Login login = new Login();
 		contentPane = (JPanel) frm.getContentPane();
+      contentPane.setBackground(new Color(105, 105, 105));
 		contentPane.setLayout(contentPaneLayout = new CardLayout());
 		createButtons(AL);
 		JPanel main = new JPanel();
@@ -64,8 +60,8 @@ public class HomeScreen implements ActionListener {
 		int height = 600;
 		contentPane.add("Main Menu", main);
 		contentPane.add("Report", reportScreen);
-     //  contentPane.add(Login, "Login");
-     //  contentPaneLayout.show(Login, "Login");
+      //contentPane.add(login.frmO, "Login");
+      contentPaneLayout.show(contentPane, "Login");
      
 	      //constructor for classes
 	      EditFunction edit = new EditFunction(contentPane);
@@ -78,7 +74,7 @@ public class HomeScreen implements ActionListener {
 	      
 		addNotes note = new addNotes(contentPane);
 		contentPane.add(note, "Add Notes");
-		addData2 data = new addData2(contentPane);
+ 		addData2 data = new addData2(contentPane);
       contentPane.add(data, "Add Data");
 
 		frm.pack();
@@ -90,7 +86,7 @@ public class HomeScreen implements ActionListener {
       
       
       /* //////////////////////////////////////// */
-      contentPaneLayout.show(contentPane, "Report");
+      //contentPaneLayout.show(contentPane, "Main Menu");
       /* //////////////////////////////////////// */
       
       
@@ -111,7 +107,6 @@ public class HomeScreen implements ActionListener {
 		Object[][] testData = new Object[100][10];
 		totalsTable = new JTable(testData, columnNames); //DUMMY DATA; FOR DISPLAY PURPOSES ONLY
 		totalsTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-      totalsTable.setModel(new MyTableModel());
 		JScrollPane scroll = new JScrollPane(totalsTable);
 		scroll.setPreferredSize(new Dimension(500, 250));
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -121,10 +116,12 @@ public class HomeScreen implements ActionListener {
 		left.add(Box.createRigidArea(new Dimension(0, 100)));
       left.add(but[0]);
       left.add(Box.createRigidArea(new Dimension(0, 50)));
-      but[0].addActionListener(AL);
       left.add(but[1]);
       left.add(Box.createRigidArea(new Dimension(0, 50)));
-      but[1].addActionListener(AL);
+      left.add(but[6]);
+      left.add(Box.createRigidArea(new Dimension(0, 50)));
+      left.add(but[7]);
+      left.add(Box.createRigidArea(new Dimension(0, 50)));
 		left.add(Box.createVerticalGlue());
 		dataNotes.add(scroll);
 		dataNotes.add(Box.createRigidArea(new Dimension(0, 30)));
@@ -195,6 +192,8 @@ public class HomeScreen implements ActionListener {
 		but[3] = new JButton("Main Menu");
 		but[4] = new JButton("Create");
 		but[5] = new JButton("Add Notes");
+      but[6] = new JButton("Graphs");
+      but[7] = new JButton("Report");
 		for (int i = 0; i < but.length; i++) {
 			but[i].addActionListener(AL);
 		} 
