@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 class addNotes extends JPanel {
-   //homescrren constuctor
-   HomeScreen home = new HomeScreen();
    //needed for panel layout etc
    private BorderLayout contentPaneLayout;
    private JPanel contentPane;
@@ -16,6 +14,14 @@ class addNotes extends JPanel {
 	private JTextArea notesEntered;
    //action listener
    private ActionListener AL2;
+   //variables
+   //private String parkSelection = "";
+   private String date = "";
+   private String noteEntered = "";
+   private static String[] parkList ={"Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocohillo Wells", "Prairie City"};
+   private JComboBox<String> parkSelect;
+   //private JComboBox<String> parkList;
+   
 
    public addNotes(JPanel contentPane) 
     {
@@ -50,13 +56,12 @@ class addNotes extends JPanel {
 		lblNewLabel_1.setBounds(340, 35, 112, 39);
 		middle.add(lblNewLabel_1);
 		
-		JComboBox selectPark = new JComboBox();
+		JComboBox selectPark = new JComboBox<String>(parkList);
 		selectPark.setBounds(531, 37, 141, 39);
 		selectPark.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		selectPark.setPreferredSize(new Dimension(110, 35));
 		selectPark.setMinimumSize(new Dimension(11000, 20));
 		selectPark.setBackground(SystemColor.inactiveCaptionBorder);
-		selectPark.setModel(new DefaultComboBoxModel(new String[] {"Carnegie", "Clay Pit", "Heber Dunes", "Hollister Hills", "Hungry Valley", "Oceano Dunes", "Ocohillo Wells", "Prairie City"}));
 		middle.add(selectPark);
 		
 		//enter notes label and text area
@@ -101,10 +106,11 @@ class addNotes extends JPanel {
 		bottom.add(enterNotes);
       
       
-      //CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+   
       
-      //contentPane.add(home, "Back");
-      
+      //homescrren constuctor
+      HomeScreen home = new HomeScreen();
+
       
        AL2 = new ActionListener(){
       
@@ -115,12 +121,25 @@ class addNotes extends JPanel {
                       CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                       cardLayout.previous(contentPane);
                       cardLayout.previous(contentPane);
-                      cardLayout.previous(contentPane);
-                      cardLayout.previous(contentPane);
-                      cardLayout.previous(contentPane);
 
                 }
                 if(ae.getSource() == enterNotes){
+                     String parkSelection = (String) selectPark.getSelectedItem();
+                     date =searchDate.getText();
+                     noteEntered = notesEntered.getText();                    
+                     /*//add to data base.
+                     */
+                     
+                     //clears textfields for new entry
+                     searchDate.setText("");
+                     notesEntered.setText("");
+                     
+                     //switch back to main screen after note is entered
+                     CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                     cardLayout.previous(contentPane);
+                     cardLayout.previous(contentPane);
+                     
+
                      
                 }
             }
@@ -130,8 +149,9 @@ class addNotes extends JPanel {
       //action listeners      
       enterNotes.addActionListener(AL2);
       back.addActionListener(AL2);
-            
+
      
       }//end init
+        
 }//end class  
   
